@@ -1,3 +1,10 @@
+@import "~../common-style/default.scss";
+
+body {
+  background-size: cover;
+  background: url(/bg.jpg) no-repeat fixed;
+}
+
 .App {
   text-align: center;
 }
@@ -7,7 +14,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

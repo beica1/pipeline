@@ -1,0 +1,3 @@
+[submodule "common-style"]
+	path = common-style
+	url = git@github.com:beica1/common-style.scss.git

@@ -1,0 +1,33 @@
+/**
+ * _app.scss of pipleline
+ * Created by beica on 2019/10/28
+ */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #a4b0be;
+  background-image: url(/colorfull-bg.svg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#root {
+  padding: 5% 20%;
+}
+
+.App {
+  margin: auto;
+  max-width: 1366px;
+}
+
+.board {
+  margin-top: 50px;
+}
+
+.radius {
+  border-radius: 4px;
+}

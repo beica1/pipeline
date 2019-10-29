@@ -1,28 +1,16 @@
-import React from 'react';
-import Panel from './Panel'
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Nav from './components/Nav'
 
-function App() {
+function App () {
+  const [comp, change] = useState(null)
   return (
-    <div className="App">
-      <Panel />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App fill pos-rel flex flex-col">
+      <div className="black">
+        <Nav switch={change} />
+      </div>
+      <div className="board flex-1 frosted radius scroll-y padding-10">{comp}</div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

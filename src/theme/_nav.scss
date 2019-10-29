@@ -1,0 +1,19 @@
+/**
+ * _nav.scss of pipleline
+ * Created by beica on 2019/10/28
+ */
+.nav {
+  overflow: hidden;
+}
+
+.nav__item {
+  cursor: pointer;
+
+  &.active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

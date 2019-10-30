@@ -1,11 +1,13 @@
 /**
- * Pipeline.js of pipleline
+ * Pipeline.js of timeline
  * Created by beica on 2019/10/28
  */
 import React from 'react'
 
-export default () => {
+const TimeLine = () => {
   return (
     <div>PipeLine</div>
   )
 }
+
+export default TimeLine

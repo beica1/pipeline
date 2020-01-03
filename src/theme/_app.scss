@@ -9,7 +9,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #a4b0be;
+  color: $grey;
   background-image: url(/colorfull-bg.svg);
   background-attachment: fixed;
   background-size: cover;
@@ -31,3 +31,5 @@ body {
 .radius {
   border-radius: 4px;
 }
+
+@import "form";

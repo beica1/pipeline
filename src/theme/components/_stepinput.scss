@@ -1,0 +1,20 @@
+/**
+ * _stepinput.scss of pipleline
+ * Created by beica on 2019/11/22
+ */
+.step-input {
+  input {
+    width: 50px;
+    border: none;
+  }
+
+  .action {
+    cursor: pointer;
+    display: inline-block;
+    width: 20px;
+
+    &:not(:first-child) {
+      margin-left: 5px;
+    }
+  }
+}

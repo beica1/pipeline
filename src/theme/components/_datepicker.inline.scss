@@ -1,0 +1,66 @@
+/**
+ * _datepicker.inline.js of pipleline
+ * Created by beica on 2019/11/15
+ */
+.datepicker__day {
+  height: 30px;
+  line-height: 30px;
+
+  &.cur {
+    border-width: 1px 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  &.pre,
+  &.next {
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  &.pre {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to bottom, white 30%, transparent);
+      content: '';
+      z-index: 1;
+    }
+  }
+
+  &.next {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to top, white, transparent);
+      content: '';
+    }
+  }
+}
+
+.datepicker.inline {
+  width: 160px;
+
+  :hover {
+    .datepicker__day.cur {
+      border-color: $grey;
+    }
+  }
+}
+
+.fo-list__item:nth-last-child(n + 4) {
+  display: none;
+}

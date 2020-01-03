@@ -2,10 +2,15 @@
  * default.scss of pipleline
  * Created by beica on 2019/10/28
  */
+@import "var";
 @import "common-style/default.scss";
 @import "frosted";
 @import "nav";
 @import "board";
+@import "components/dialog";
+@import "components/tagselect";
+@import "components/datepicker.inline";
+@import "components/stepinput";
 @import "app";
 @import "style.css";
 

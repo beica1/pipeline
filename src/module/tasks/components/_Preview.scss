@@ -1,0 +1,22 @@
+/**
+ * _Preview.scss of pipleline
+ * Created by beica on 2019/11/11
+ */
+.img__viewer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    max-width: 80%;
+    max-height: 80%;
+  }
+}

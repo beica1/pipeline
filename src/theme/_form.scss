@@ -1,0 +1,24 @@
+/**
+ * _form.scss of pipleline
+ * Created by beica on 2019/11/14
+ */
+.form-item {
+  border: 1px solid transparent;
+
+  input {
+    background: none;
+    border-bottom: 1px solid;
+
+    &[readonly] {
+      border: none;
+    }
+  }
+
+  &.invalid {
+    border-color: $asst;
+
+    input {
+      border-color: transparent;
+    }
+  }
+}

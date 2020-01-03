@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader'
 import React, { Suspense, lazy } from 'react';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import Loading from './components/Loading.module'
@@ -15,7 +16,7 @@ function App () {
               <Route path="/market" component={lazy(() => import('./module/pool/TaskPool'))} />
               <Route path="/timeline" component={lazy(() => import('./module/timeline/TimeLine'))} />
               <Route path="/done" component={lazy(() => import('./module/history/History'))} />
-              <Route path="/me" component={lazy(() => import('./module/me/Me'))} />
+              <Route path="/me" component={lazy(() => import('./module/user/Me'))} />
             </Switch>
           </Suspense>
         </div>
@@ -24,4 +25,4 @@ function App () {
   )
 }
 
-export default App
+export default hot(module)(App)

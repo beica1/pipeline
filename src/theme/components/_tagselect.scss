@@ -1,0 +1,19 @@
+/**
+ * _tagSelect.scss of pipleline
+ * Created by beica on 2019/11/14
+ */
+.tag-item {
+  cursor: pointer;
+  padding: 0 2px;
+  border-radius: 2px;
+  font-size: 12px;
+
+  &.active {
+    color: map_get($colors, white);
+    background: $blue;
+  }
+
+  &:not(:first-child) {
+    margin-left: 20px;
+  }
+}

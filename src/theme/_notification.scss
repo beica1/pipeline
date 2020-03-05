@@ -1,0 +1,16 @@
+/**
+ * _notification.scss of pipeline
+ * Created by beica on 2020/1/9
+ */
+.notification {
+  position: absolute;
+  width: 220px;
+  top: 0;
+  right: 10px;
+
+  .message {
+    padding: 10px;
+    margin-top: 10px;
+  }
+}
+

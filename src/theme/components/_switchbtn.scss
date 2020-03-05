@@ -1,0 +1,25 @@
+/**
+ * _switchbtn.scss of pipleline
+ * Created by beica on 2020/1/7
+ */
+.switches {
+  height: 20px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: $dark;
+  background: $light;
+}
+
+.switch {
+  min-width: 40px;
+  padding: 2px 0;
+  border-radius: inherit;
+  text-align: center;
+  cursor: pointer;
+
+  &.active {
+    background: $blue;
+    color: white;
+    box-shadow: 0 1px 3px rgba(black, 0.4);
+  }
+}

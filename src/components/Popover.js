@@ -2,28 +2,33 @@
  * Popover.js of pipleline
  * Created by beica on 2019/11/11
  */
-import * as R from 'ramda'
-import React, { useState } from 'react'
-import Reactive from './Reactive'
+import React, { useState, useEffect, useRef } from 'react'
 import Portal from './Portal'
 
-const Popover = ({ children, popup, open = R.identity, ...props }) => {
-  
+const Null = () => <span />
+
+const Popover = ({ children, popEl = <Null />, ...props }) => {
+  const root = useRef()
   const [show, toggle] = useState(false)
+  const [position, updatePos] = useState({})
   
-  const emit = open
-  
-  const toggleDisplay = (e) => {
-    const bounding = e.currentTarget.getBoundingClientRect()
-    R.when(R.not, R.thunkify(emit)(bounding))(show)
-    toggle(!show)
-  }
+  useEffect(() => {
+    updatePos(root.current.getBoundingClientRect())
+  }, [show])
   
   return (
-    <Reactive {...props} click={toggleDisplay}>
+    <span className="popover" ref={root} {...props} onClick={() => toggle(!show)}>
       {children}
-      {show && <Portal>{popup}</Portal>}
-    </Reactive>
+      {
+        show &&
+        <Portal className="popover">
+          {React.cloneElement(popEl, {
+            close: () => toggle(false),
+            coord: position
+          })}
+        </Portal>
+      }
+    </span>
   )
 }
 

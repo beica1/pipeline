@@ -15,7 +15,7 @@ const dateReducer = reducerGen(addDay)
 const InlineDatePicker = (
   {
     value: _defaultValue,
-    pattern = config.dateFormat,
+    pattern = config.timeFormat,
     change = R.identity
   }
 ) => {

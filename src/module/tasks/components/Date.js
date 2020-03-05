@@ -41,7 +41,7 @@ const IDate = () => {
         </tr>
         <tr>
           <td>
-            <FormItem name="deliveryDate" value={formatTime(config.dateFormat, deadline)}>
+            <FormItem name="deliveryDate" value={formatTime(config.timeFormat, deadline)}>
               <Input readOnly />
             </FormItem>
           </td>

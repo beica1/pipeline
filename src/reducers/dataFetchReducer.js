@@ -7,14 +7,13 @@ const dataFetchReducer = (state, action) => {
     case 'LOADING':
       return {
         ...state,
-        isLoading: true,
-        isError: false
+        isLoading: true
       }
     case 'DONE':
       return {
         ...state,
         isLoading: false,
-        isError: false,
+        isDone: true,
         data: action.payload
       }
     case 'FAIL':

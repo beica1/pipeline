@@ -2,17 +2,33 @@
  * _form.scss of pipleline
  * Created by beica on 2019/11/14
  */
-.form-item {
-  border: 1px solid transparent;
+.input,
+input[type=text],
+input[type=date] {
+  background: none;
+  background: rgba($grey, 0.2);
+  padding: 5px;
+  border-radius: 4px;
+
+  &[readonly] {
+    background: none;
+  }
+}
+
+input[type=date] {
+  padding: 3px 5px;
+}
+
+.input {
+  display: inline-block;
 
   input {
-    background: none;
-    border-bottom: 1px solid;
-
-    &[readonly] {
-      border: none;
-    }
+    padding: 0;
   }
+}
+
+.form-item {
+  border: 1px solid transparent;
 
   &.invalid {
     border-color: $asst;

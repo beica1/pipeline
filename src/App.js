@@ -1,26 +1,46 @@
 import { hot } from 'react-hot-loader'
-import React, { Suspense, lazy } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
-import Loading from './components/Loading.module'
-import Nav from './components/Nav'
+import Main from 'module/main/Main'
+import Admin from 'module/admin/Admin'
+import Login from 'module/login/Login'
+import Notification from './components/Notification'
+import { onLogin, offLogin, onLogged, offLogged } from './module/auth'
 
 function App () {
+  const [logged, update] = useState(true)
+  
+  const login = () => {
+    update(false)
+  }
+  
+  const auth = () => {
+    update(true)
+  }
+  
+  useEffect(() => {
+    onLogin(login)
+    onLogged(auth)
+    
+    return () => {
+      offLogin(login)
+      offLogged(auth)
+    }
+  })
+  
   return (
     <Router>
       <div className="App fill pos-rel flex flex-col">
-        <div className="black"><Nav /></div>
-        <div className="board flex-1 frosted radius scroll-y padding-10">
-          <Suspense fallback={<Loading/>}>
-            <Switch>
-              <Route exact path="/" component={lazy(() => import('./module/tasks/Tasks'))} />
-              <Route path="/market" component={lazy(() => import('./module/pool/TaskPool'))} />
-              <Route path="/timeline" component={lazy(() => import('./module/timeline/TimeLine'))} />
-              <Route path="/done" component={lazy(() => import('./module/history/History'))} />
-              <Route path="/me" component={lazy(() => import('./module/user/Me'))} />
+        {
+          logged
+          ? <Switch>
+              <Route path="/admin" component={Admin} />
+              <Route path="/" component={Main} />
             </Switch>
-          </Suspense>
-        </div>
+          : <Login/>
+        }
       </div>
+      <Notification />
     </Router>
   )
 }

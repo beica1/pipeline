@@ -4,10 +4,8 @@
  */
 export const tasks = `
   query Tasks {
-    me {
-      tasks {
-        id
-      }
+    tasks {
+      id
     }
   }
 `

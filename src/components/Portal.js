@@ -5,15 +5,18 @@
 import { useEffect } from 'react'
 import ReactDom from 'react-dom'
 
-const Portal = ({ children }) => {
+const Portal = ({ children, selector = 'body', className = '' }) => {
   const node = document.createElement('div')
+  node.classList.add('portal')
   
   useEffect(() => {
-    
-    document.body.appendChild(node)
+    if (className) {
+      node.classList.add(className)
+    }
+    document.querySelector(selector).appendChild(node)
     
     return () => {
-      document.body.removeChild(node)
+      document.querySelector(selector).removeChild(node)
     }
   })
   

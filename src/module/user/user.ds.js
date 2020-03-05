@@ -3,9 +3,9 @@
  * Created by beica on 2020/1/3
  */
 module.exports.login = `
-  mutation {
+  mutation Login {
     login {
-      id
+      userId
     }
   }
 `

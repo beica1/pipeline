@@ -3,7 +3,8 @@
  * Created by beica on 2019/11/22
  */
 export default {
-  dateFormat: 'MM/dd/yyyy hh'
+  timeFormat: 'MM/dd/yyyy hh',
+  dateFormat: 'yyyy-MM-dd'
 }
 
 export * from './app.js'

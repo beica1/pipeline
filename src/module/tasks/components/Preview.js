@@ -2,20 +2,16 @@
  * Preview.js of pipleline
  * Created by beica on 2019/11/11
  */
-import React, { useState } from 'react'
-import Reactive from 'components/Reactive'
-import Portal from 'components/Portal'
+import React from 'react'
 import Content from './Preview.comp'
+import Popover from 'components/Popover'
 import './_Preview.scss'
 
 const Preview = ({children, task, ...props}) => {
-  const [show, toggle] = useState(false)
-  
   return (
-    <Reactive click={() => toggle(!show)} {...props}>
+    <Popover {...props} popEl={<Content/>}>
       {children}
-      {show && <Portal><Content /></Portal>}
-    </Reactive>
+    </Popover>
   )
 }
 

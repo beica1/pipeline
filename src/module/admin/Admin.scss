@@ -1,0 +1,68 @@
+/**
+ * Admin.scss of pipleline
+ * Created by beica on 2020/1/7
+ */
+@import "~theme/var";
+
+.admin {
+  padding-top: 40px;
+
+  header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  td, th {
+    padding: 10px 0;
+    text-align: left;
+
+    &:last-child {
+      text-align: right;
+
+      &:first-child {
+        text-align: center;
+      }
+    }
+  }
+
+  .content {
+    tr {
+      border-top: 1px solid rgba(white, 0.1);
+    }
+  }
+
+  .input,
+  input[type=text] {
+    width: 80%;
+  }
+
+  input[type=date] {
+    width: 90%;
+  }
+
+  .process {
+    position: relative;
+    margin-top: 10px;
+
+    canvas {
+      border-radius: 4px;
+      width: 100%;
+      background: rgba(white, 0.1);
+    }
+
+    .delete {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+}

@@ -32,7 +32,12 @@ const UserEdit = ({ done = R.identity, user = {} }) => {
     const request  = user.userId ? update : create
     const data = {
       userId: user.userId,
-      user: { name, roles, groups, expiredIn }
+      user: {
+        name,
+        roles: R.map(R.prop('roleId'), roles),
+        groups: R.map(R.prop('groupId'), groups),
+        expiredIn
+      }
     }
     request(data).then(() => done(true))
   }
@@ -41,13 +46,10 @@ const UserEdit = ({ done = R.identity, user = {} }) => {
     readRoles().catch(() => {
       alert('角色数据获取失败')
     })
-  }, [])
-  
-  useEffect(() => {
     readGroups().catch(() => {
       alert('分组数据获取失败')
     })
-  }, [])
+  }, [readGroups, readRoles])
   
   return (
     <tr className="user">

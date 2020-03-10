@@ -6,7 +6,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import UserEdit from './User.edit'
 import User from './User'
 import useRequest from 'hooks/useRequest'
-import { readUser } from './user.ds'
+import { readAll } from './user.ds'
 import Portal from 'components/Portal'
 
 const Align = React.memo(() => {
@@ -22,7 +22,7 @@ const Align = React.memo(() => {
 })
 
 const Users = () => {
-  const [{ isDone, data: { users }}, read] = useRequest(readUser, [])
+  const [{ isDone, data: { users }}, read] = useRequest(readAll, [])
   const [isEditMode, setEditMode] = useState(false)
   
   const done = useCallback(updated => {
@@ -30,7 +30,7 @@ const Users = () => {
       read()
     }
     setEditMode(false)
-  }, [])
+  }, [read])
   
   const add = () => {
     setEditMode(true)
@@ -38,7 +38,7 @@ const Users = () => {
   
   useEffect(() => {
     read()
-  }, [])
+  }, [read])
   
   return (
     <>

@@ -2,7 +2,7 @@
  * Popover.js of pipleline
  * Created by beica on 2019/11/11
  */
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useLayoutEffect, useRef } from 'react'
 import Portal from './Portal'
 
 const Null = () => <span />
@@ -12,9 +12,9 @@ const Popover = ({ children, popEl = <Null />, ...props }) => {
   const [show, toggle] = useState(false)
   const [position, updatePos] = useState({})
   
-  useEffect(() => {
+  useLayoutEffect(() => {
     updatePos(root.current.getBoundingClientRect())
-  }, [show])
+  }, [])
   
   return (
     <span className="popover" ref={root} {...props} onClick={() => toggle(!show)}>

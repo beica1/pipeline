@@ -3,15 +3,12 @@
  * Created by beica on 2019/10/28
  */
 import React, { useState } from 'react'
-import useFetch from 'hooks/useRequest'
 import Task from './components/Task'
 import Expand from './components/Expand'
-import { task, tasks } from './tasks.ds'
 import './Tasks.scss'
 
 const Tasks = () => {
   const [expand, toggle] = useState(false)
-  const [state] = useFetch(tasks, [], {taskId: 'jo'})
   
   const edit = () => {
     toggle(true)

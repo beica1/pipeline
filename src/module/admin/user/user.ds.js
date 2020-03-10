@@ -4,9 +4,7 @@
  */
 export const addQuery = `
   mutation CreateUser($user: InputUser!) {
-    addUser(user: $user) {
-      userId
-    }
+    addUser(user: $user)
   }
 `
 
@@ -21,7 +19,7 @@ const userFragment = `
   name
 `
 
-export const readUser = `
+export const readAll = `
   query ReadUser {
     users {
       ${userFragment}
@@ -38,17 +36,9 @@ export const readUser = `
   }
 `
 
-export const readUserName = `
-  query ReadUser {
-    users {
-      ${userFragment}
-    }
-  }
-`
-
-export const filterUser = `
+export const readUser = `
   query FilterUser($filter: UserFilter!) {
-    filterUser(filter: $filter) {
+    users(filter: $filter) {
       ${userFragment}
     }
   }

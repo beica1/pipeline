@@ -38,7 +38,7 @@ const Groups = () => {
   
   useEffect(() => {
     read()
-  }, [])
+  }, [read])
   
   return (
     <>

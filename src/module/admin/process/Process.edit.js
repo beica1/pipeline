@@ -22,7 +22,7 @@ const ProcessEdit = ({ done = R.identity }) => {
   
   useEffect(() => {
     read()
-  }, [])
+  }, [read])
   
   return (
     <>

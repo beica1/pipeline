@@ -20,9 +20,7 @@ export const readGroups = `
 
 export const createGroup = `
   mutation CreateGroup($group: InputGroup!) {
-    addGroup(group: $group) {
-      groupId
-    }
+    addGroup(group: $group)
   }
 `
 

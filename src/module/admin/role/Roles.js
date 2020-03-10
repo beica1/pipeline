@@ -22,7 +22,7 @@ const Roles = () => {
   
   useEffect(() => {
     read()
-  }, [query])
+  }, [read])
   
   return (
     <>

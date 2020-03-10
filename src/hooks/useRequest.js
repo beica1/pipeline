@@ -2,7 +2,7 @@
  * useRequest.js of pipeline
  * Created by beica on 2020/1/8
  */
-import { useReducer } from 'react'
+import { useReducer, useCallback } from 'react'
 import reducer from 'reducers/dataFetchReducer'
 import fetch from 'tools/dataSource'
 
@@ -11,7 +11,7 @@ const useRequest = (query, initialData = null, url) => {
     data: initialData
   })
   
-  const request = async (variables = {}) => {
+  const request = useCallback(async (variables = {}) => {
     if (query) {
       dispatch({
         type: 'LOADING'
@@ -30,7 +30,7 @@ const useRequest = (query, initialData = null, url) => {
         })
       }
     }
-  }
+  }, [query, url])
   
   return [state, request]
 }

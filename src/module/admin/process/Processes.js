@@ -24,12 +24,12 @@ const Processes = () => {
     }
   
     updateEditMode(false)
-  }, [])
+  }, [read])
   
   
   useEffect(() => {
     read()
-  }, [])
+  }, [read])
   
   return (
     <>

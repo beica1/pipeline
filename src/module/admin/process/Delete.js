@@ -30,8 +30,8 @@ const Confirm = ({ done, close, coord, id }) => {
       <div className="pos-abs frosted radius black" style={style}>
         <p className="padding-8">确认删除该流程?</p>
         <div className="flex border-top text-center">
-          <a className="flex-1" onClick={close}>取消</a>
-          <a className="flex-1 border-left color-asst" onClick={remove}>确认</a>
+          <span className="flex-1" onClick={close}>取消</span>
+          <span className="flex-1 border-left color-asst" onClick={remove}>确认</span>
         </div>
       </div>
     </div>

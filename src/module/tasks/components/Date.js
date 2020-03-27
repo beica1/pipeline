@@ -18,39 +18,32 @@ const IDate = () => {
     changeDeadline(addDay(-testTime / 8, dueDate))
   }, [dueDate, testTime])
   
-  return (
-    <>
-      <label>时间</label>
-      <table>
-        <tbody>
-        <tr>
-          <td>
-            <FormItem name="dueDate" value={dueDate}>
-              <DatePicker change={changeDueDate} />
-            </FormItem>
-          </td>
-          <td>计划上线日期</td>
-        </tr>
-        <tr>
-          <td>
-            <FormItem name="testTime" value={testTime}>
-              <StepInput step={4} format={v => `${v}h`} min={0} change={changeTestTime} />
-            </FormItem>
-          </td>
-          <td>预留测试时长</td>
-        </tr>
-        <tr>
-          <td>
-            <FormItem name="deliveryDate" value={formatTime(config.timeFormat, deadline)}>
-              <Input readOnly />
-            </FormItem>
-          </td>
-          <td>计划交付日期</td>
-        </tr>
-        </tbody>
-      </table>
-    </>
-  )
+  return <table>
+    <tbody>
+    <tr>
+      <td>
+        <FormItem name="dueDate" value={dueDate}>
+          <DatePicker change={changeDueDate}/>
+        </FormItem>
+      </td>
+      <td>计划上线日期</td>
+    </tr>
+    <tr>
+      <td>
+        <FormItem name="testTime" value={testTime}>
+          <StepInput step={4} format={v => `${v}h`} min={0} change={changeTestTime}/>
+        </FormItem>
+      </td>
+      <td>预留测试时长</td>
+    </tr>
+    <tr>
+      <td>
+        <Input name="deliveryDate" readOnly value={formatTime(config.timeFormat, deadline)} />
+      </td>
+      <td>计划交付日期</td>
+    </tr>
+    </tbody>
+  </table>
 }
 
 export default IDate

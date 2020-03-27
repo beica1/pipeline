@@ -6,6 +6,7 @@ import * as R from 'ramda'
 import React, { useCallback } from 'react'
 import useInput from 'hooks/useInput'
 import usePost from 'hooks/useRequest'
+import { notify } from 'tools/notification'
 import { createGroup } from './group.ds'
 
 const GroupEdit = ({ group = {}, done = R.identity }) => {
@@ -19,13 +20,16 @@ const GroupEdit = ({ group = {}, done = R.identity }) => {
   
   const add = useCallback(() => {
     return create({
-      group: { name, desc, color }
+      group: { name, desc, color, member: [] }
     })
   }, [color, create, desc, name])
   
   const submit = useCallback(() => {
-    const request = group && group.groupId ? update : add
-    request().then(() => done(true))
+    const request = group.groupId ? update : add
+    request().then(() => {
+      done(true)
+      notify(`组编辑成功`)
+    })
   }, [add, done, group, update])
   
   return (

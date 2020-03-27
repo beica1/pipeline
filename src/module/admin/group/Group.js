@@ -13,7 +13,7 @@ const Group = ({ group = {}, done }) => {
   
   const remove = groupId => {
     drop({ groupId }).then(() => {
-      notify('Group removed')
+      notify('组移除成功')
       done(true)
     })
   }

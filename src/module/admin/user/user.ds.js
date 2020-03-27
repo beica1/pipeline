@@ -50,17 +50,12 @@ export const updateUser = `
   }
 `
 
-export const queryGroups = `
+export const queryGroupsAndRoles = `
   query QueryGroups {
     groups {
       groupId
       name
     }
-  }
-`
-
-export const queryRoles = `
-  query QueryRoles {
     roles {
       roleId
       name

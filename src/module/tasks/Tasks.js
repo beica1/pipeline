@@ -22,11 +22,15 @@ const Tasks = () => {
     expand ?
     <Expand collapse={() => toggle(false)} /> :
     <section className="list">
+      <form action="/upload/jojo" method="post" encType="multipart/form-data">
+        <input type="file" name="file" />
+        <button type="submit">upload</button>
+      </form>
       <div className="action__bar padding-h-20 flex">
         <div className="flex-1">
           全部
         </div>
-        <button className="btn task__new">新建</button>
+        <button className="btn task__new" onClick={edit}>新建</button>
       </div>
       <div className="tasks">
         <Task edit={edit} comment={comment} />

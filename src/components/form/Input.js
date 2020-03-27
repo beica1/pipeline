@@ -2,21 +2,17 @@
  * Input.js of pipleline
  * Created by beica on 2019/12/24
  */
-import React, { useState, useCallback } from 'react'
+import React from 'react'
+import { useField } from 'formik'
 
-const Input = ({ value: _value, update, ...props }) => {
-  const [value, change] = useState(_value)
-  
-  const onChange = useCallback(value => {
-    change(value)
-    update(value)
-  }, [update])
+const Input = (props) => {
+  const [field] = useField(props)
+  console.log(field)
   
   return (
     <input
       type="text"
-      value={value}
-      onChange={e => onChange(e.target.value.trim())}
+      {...field}
       {...props}
     />
   )

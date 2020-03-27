@@ -4,7 +4,8 @@
  */
 export default {
   timeFormat: 'MM/dd/yyyy hh',
-  dateFormat: 'yyyy-MM-dd'
+  dateFormat: 'yyyy-MM-dd',
+  messageDuration: 1000 * 3
 }
 
 export * from './app.js'

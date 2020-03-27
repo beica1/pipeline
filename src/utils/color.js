@@ -1,4 +1,5 @@
 /**
+ * @module color
  * color.js of pipleline
  * Created by beica on 2019/12/10
  */
@@ -36,6 +37,7 @@ const formatHexNumber = R.cond([
 const parseHex = R.flip(parseInt)(16)
 
 /**
+ * @function
  * @input {Number}
  * @return {String}
  */

@@ -9,7 +9,9 @@
     color: $grey50
   }
 
-  margin-top: 40px;
+  &:not(:first-child) {
+    margin-top: 40px;
+  }
 
   > div {
     margin-top: 10px;

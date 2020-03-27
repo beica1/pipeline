@@ -5,6 +5,10 @@
 import * as R from 'ramda'
 import EventBus from 'events'
 
+/**
+ * @instance
+ * @type {EventBus}
+ */
 const ee = new EventBus()
 
 export const on = R.bind(ee.on, ee)

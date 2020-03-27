@@ -8,6 +8,7 @@ import User from './User'
 import useRequest from 'hooks/useRequest'
 import { readAll } from './user.ds'
 import Portal from 'components/Portal'
+import { notify } from '../../../tools/notification'
 
 const Align = React.memo(() => {
   return (
@@ -37,7 +38,7 @@ const Users = () => {
   }
   
   useEffect(() => {
-    read()
+    read().then(() => notify('jo'))
   }, [read])
   
   return (

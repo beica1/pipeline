@@ -8,10 +8,11 @@ import useRequest from 'hooks/useRequest'
 import { addQuery, updateUser } from './user.ds'
 import useInput from 'hooks/useInput'
 import MultiSelect from 'components/form/MultiSelect'
-import { queryGroupsAndRoles } from './user.ds'
+import { userSchema, queryGroupsAndRoles } from './user.ds'
 import { formatTime } from 'utils/date'
 import config from 'config'
 import { notify } from 'tools/notification'
+import { Formik } from 'formik'
 
 const format = formatTime(config.dateFormat)
 
@@ -51,28 +52,36 @@ const UserEdit = ({ done = R.identity, user = {} }) => {
     })
   }, [read])
   
-  return <tr className="user">
-    <td>{Name}</td>
-    <td>
-      <MultiSelect
-        value={groups}
-        data={groupData} onChange={updateGroups}
-        textField="name" dataField="groupId"
-      />
-    </td>
-    <td>
-      <MultiSelect
-        value={roles}
-        data={roleData} onChange={updateRoles}
-        textField="name" dataField="roleId"
-      />
-    </td>
-    <td>{Expired}</td>
-    <td>
-      <span className="link-btn" onClick={submit}>提交</span>
-      <span className="link-btn margin-left-4" onClick={() => done()}>取消</span>
-    </td>
-  </tr>
+  return <Formik
+    initialValues={userSchema.default()}
+    validationSchema={userSchema} onSubmit={(values) => {
+    console.log(values)
+  }}>
+    {props =>
+      <tr className="edit user">
+        <td>{Name}</td>
+        <td>
+          <MultiSelect
+            value={groups}
+            data={groupData} onChange={updateGroups}
+            textField="name" dataField="groupId"
+          />
+        </td>
+        <td>
+          <MultiSelect
+            value={roles}
+            data={roleData} onChange={updateRoles}
+            textField="name" dataField="roleId"
+          />
+        </td>
+        <td>{Expired}</td>
+        <td>
+          <span className="link-btn" onClick={props.handleSubmit}>提交</span>
+          <span className="link-btn margin-left-4" onClick={() => done()}>取消</span>
+        </td>
+      </tr>
+    }
+  </Formik>
 }
 
 export default UserEdit

@@ -2,6 +2,18 @@
  * user.ds.js of pipeline
  * Created by beica on 2020/1/10
  */
+import * as Y from 'yup'
+
+export const userSchema = Y.object({
+  name: Y.string()
+    .required('请输入用户名')
+  ,groups: Y.array()
+    .ensure()
+  ,roles: Y.array()
+    .ensure()
+  ,expiredIn: Y.date()
+})
+
 export const addQuery = `
   mutation CreateUser($user: InputUser!) {
     addUser(user: $user)

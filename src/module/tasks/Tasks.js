@@ -8,7 +8,7 @@ import Expand from './components/Expand'
 import './Tasks.scss'
 
 const Tasks = () => {
-  const [expand, toggle] = useState(false)
+  const [expand, toggle] = useState(true)
   
   const edit = () => {
     toggle(true)
@@ -22,10 +22,6 @@ const Tasks = () => {
     expand ?
     <Expand collapse={() => toggle(false)} /> :
     <section className="list">
-      <form action="/upload/jojo" method="post" encType="multipart/form-data">
-        <input type="file" name="file" />
-        <button type="submit">upload</button>
-      </form>
       <div className="action__bar padding-h-20 flex">
         <div className="flex-1">
           全部

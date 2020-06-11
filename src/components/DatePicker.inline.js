@@ -2,7 +2,7 @@
  * DatePicker.inline.js of pipleline
  * Created by beica on 2019/11/15
  */
-import React, { useRef, useReducer, useEffect } from 'react'
+import React from 'react'
 import * as R from 'ramda'
 import throttle from 'lodash.throttle'
 import reducerGen from 'reducers/logicReducer.gen'
@@ -19,48 +19,38 @@ const InlineDatePicker = (
     change = R.identity
   }
 ) => {
-  const [value, dispatch] = useReducer(dateReducer, _defaultValue || new Date())
+  const [value, dispatch] = React.useReducer(dateReducer, _defaultValue || new Date())
   
-  const pre = () => {
+  const update = (addend, val) => {
     dispatch({
       type: 'ADD',
-      addend: -1
+      addend
     })
+    change(addDay(addend, val || value))
   }
   
-  const next = () => {
-    dispatch({
-      type: 'ADD',
-      addend: 1
-    })
-  }
-  
-  const wheel = useRef(throttle(y => {
-    if (y > 0 ) next()
-    else pre()
-  }, 200)).current
+  const wheel = React.useRef(throttle((y, value) => {
+    if (y > 0 ) update(1, value)
+  else update(-1, value)
+  }, 250)).current
   
   const onWheel = e => {
-    wheel(e.deltaY)
+    wheel(e.deltaY, value)
     e.stopPropagation()
   }
   
   const format = formatTime(pattern)
   
-  useEffect(() => {
-    change(value)
-  }, [value, change])
-  
   return (
-    <div onWheel={onWheel} className="datepicker inline bg-white padding-10 radius">
+    <div onWheel={onWheel} className="datepicker inline radius">
       <div className="datepicker__list">
-        <div className="datepicker__day pre" onClick={pre}>
+        <div className="datepicker__day pre" onClick={() => update(-1)}>
           <FocusedOrderList focused={format(addDay(-1, value))} />
         </div>
         <div className="datepicker__day cur">
           <FocusedOrderList focused={format(value)} />
         </div>
-        <div className="datepicker__day next" onClick={next}>
+        <div className="datepicker__day next" onClick={() => update(1)}>
           <FocusedOrderList focused={format(addDay(1, value))} />
         </div>
       </div>

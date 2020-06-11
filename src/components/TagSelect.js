@@ -6,25 +6,36 @@ import * as R from 'ramda'
 import React  from 'react'
 import cx from 'utils/classnames'
 
+const getDefaultValue = R.o(R.pluck('value'), R.filter(R.propEq('checked', true)))
+
 /**
  * TagSelect
  * @param {Object[]} tags
- * @param {String} tags[].value 值
+ * @param {String|Number} tags[].value 值
  * @param {String} tags[].label 文本
  * @param {Boolean} [tags[].checked] 默认选中
+ * @param {Array} defaultValue
  * @param {Function} [format=R.identity]
  * @param {Function} [onChange=R.identity]
  * @param {String} [type='checkbox']
  * @returns {*}
  * @constructor
  */
-const TagSelect = ({tags = [], format = R.identity, onChange = R.identity, type = 'checkbox'}) => {
-  const [value, setValue] = React.useState(() => R.filter(R.propEq('checked', true), tags))
+const TagSelect = (
+  {
+    tags = [],
+    value: defaultValue,
+    format = R.identity,
+    onChange = R.identity,
+    type = 'checkbox'
+  }
+) => {
+  const [value, setValue] = React.useState(() => defaultValue || getDefaultValue(tags))
   
-  const change = React.useCallback((tag, active) => {
-    let nextValue = active ? [...value, tag] : R.reject(R.equals(tag), value)
+  const change = React.useCallback((val, active) => {
+    let nextValue = active ? [...value, val] : R.reject(R.equals(val), value)
     if (type === 'radio') {
-      nextValue =  active ? [tag] : []
+      nextValue =  active ? [val] : []
     }
     setValue(nextValue)
     onChange(nextValue)
@@ -34,11 +45,11 @@ const TagSelect = ({tags = [], format = R.identity, onChange = R.identity, type 
     <div className="tag-list">
       {tags.map(data => {
         const tag = format(data)
-        const state = Boolean(R.find(R.equals(tag), value))
+        const isActive = Boolean(R.find(R.equals(tag.value), value))
         return <span
           key={tag.value || tag.label}
-          className={cx('tag-item', state && 'active')}
-          onClick={() => change(tag, !state)}
+          className={cx('tag-item', isActive && 'active')}
+          onClick={() => change(tag.value, !isActive)}
         >
           {tag.label}
         </span>

@@ -3,21 +3,23 @@
  * Created by beica on 2019/12/24
  */
 import React from 'react'
+import makeFormItem from 'components/form/FormItem'
+import File from './File'
 
-const Files = ({ value, update }) => {
-  return (
-    <ul>
-      <li>{value}</li>
-      <li>
-        <span className="file-name">需求文档</span>
-        <span onClick={() => update(1)}>change 1</span>
-      </li>
-      <li>
-        <span className="file-name">国际化文档</span>
-        <span onClick={() => update(2)}>change 2</span>
-      </li>
-    </ul>
-  )
+const files = [
+  '需求文档',
+  '设计稿',
+  '国际化文档'
+]
+
+const Files = ({ value, onChange }) => {
+  const set = (index, file) => {
+    const next = value
+    next[index] = file
+    onChange(next)
+  }
+  
+  return files.map((file, index) => <File key={file} placeholder={file} update={file => set(index, file)} />)
 }
 
-export default Files
+export default makeFormItem(Files)

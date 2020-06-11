@@ -20,7 +20,7 @@ const formatter = [
   { index: 4, reg: /m+/, method: R.invoker(0, 'getMinutes') },
   { index: 5, reg: /s+/, method: R.invoker(0, 'getSeconds') },
   { index: 6, reg: /MM/, method: R.o(R.inc, R.invoker(0, 'getMonth')) },
-  { index: 7, reg: /hh/, method: R.o(R.ifElse(R.flip(R.gt)(12), R.always('PM'), R.always('AM')), R.invoker(0, 'getHours')) }
+  { index: 7, reg: /hh/, method: R.o(R.ifElse(R.flip(R.gt)(12), R.always('pm'), R.always('am')), R.invoker(0, 'getHours')) }
 ]
 
 const _get = R.converge(R.unapply(R.identity), R.pluck('method', formatter))

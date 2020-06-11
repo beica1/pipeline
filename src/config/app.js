@@ -21,7 +21,7 @@ export const requirements = [
   },
   {
     id: 5,
-    label: '长期活动'
+    label: '长期'
   }
 ]
 

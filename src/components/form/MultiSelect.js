@@ -66,35 +66,29 @@ const MultiSelect = (
     onChange(value)
   }, [onChange, value])
   
-  return (
-    <span className="multi-select input" onBlur={blur} onClick={toggle}>
-      <ul className="selected">
-        {!value.length && <span className="color-grey">请选择</span>}
-        {value.map(option => (
-          <li
-            key={getValue(option)}
-            className="choice"
-            title="点击删除"
-            onClick={e => remove(option, e)}
-          >
-            {getText(option)}
-          </li>
-        ))}
-        <input ref={input} type="text"/>
-      </ul>
-      {focused && <ul className="options radius">
-        {data.map(option => (
-          <li
-            className={cx('option', { active: hasSelect(option) })}
-            key={getValue(option)}
-            onMouseDown={() => update(option)}
-          >
-            {getText(option)}
-          </li>
-        ))}
-      </ul>}
-    </span>
-  )
+  return <div className="multi-select input" onBlur={blur} onClick={toggle}>
+    <ul className="selected">
+      {!value.length && <span className="color-grey">请选择</span>}
+      {value.map(option => <li
+        key={getValue(option)}
+        className="choice"
+        title="移除"
+        onClick={e => remove(option, e)}
+      >
+        {getText(option)}
+      </li>)}
+      <input ref={input} type="text"/>
+    </ul>
+    {focused && <ul className="options radius">
+      {data.map(option => !hasSelect(option) && <li
+        className="option"
+        key={getValue(option)}
+        onMouseDown={() => update(option)}
+      >
+        {getText(option)}
+      </li>)}
+    </ul>}
+  </div>
 }
 
 export default MultiSelect

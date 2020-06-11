@@ -2,43 +2,48 @@
  * Date.js of pipleline
  * Created by beica on 2019/12/26
  */
-import React, { useEffect, useState } from 'react'
-import { FormItem, Input } from 'components/form'
+import React from 'react'
 import DatePicker from 'components/DatePicker.inline'
 import StepInput from 'components/StepInput'
 import { addDay, formatTime } from 'utils/date'
+import makeFormItem from 'components/form/FormItem'
 import config from 'config'
+import { useField } from 'formik'
 
-const IDate = () => {
-  const [dueDate, changeDueDate] = useState(() => addDay(1, new Date()))
-  const [testTime, changeTestTime] = useState(4)
-  const [deadline, changeDeadline] = useState()
+const formatter = v => v ? `${v}H` : '无'
+
+const IDate = ({ value: deliveryTime, onChange: setDeliveryTime }) => {
+  const [releaseDate, changeDueDate] = React.useState(() => addDay(1, new Date()))
+  const [, { value: testTime, error }, { setValue }] = useField('testTime')
   
-  useEffect(() => {
-    changeDeadline(addDay(-testTime / 8, dueDate))
-  }, [dueDate, testTime])
+  const setReleaseDate = v => {
+    changeDueDate(v)
+    setDeliveryTime(addDay(-testTime / 8, v))
+  }
+  
+  const setTestTime = v => {
+    setDeliveryTime(addDay(-v / 8, releaseDate))
+    setValue(v)
+  }
   
   return <table>
     <tbody>
     <tr>
       <td>
-        <FormItem name="dueDate" value={dueDate}>
-          <DatePicker change={changeDueDate}/>
-        </FormItem>
+        <DatePicker value={releaseDate} change={setReleaseDate}/>
       </td>
       <td>计划上线日期</td>
     </tr>
     <tr>
       <td>
-        <FormItem name="testTime" value={testTime}>
-          <StepInput step={4} format={v => `${v}h`} min={0} change={changeTestTime}/>
-        </FormItem>
+        <StepInput value={testTime} step={4} format={formatter} min={0} change={setTestTime}/>
+        {error && <p className="form__item-err">{error}</p>}
       </td>
       <td>预留测试时长</td>
     </tr>
     <tr>
       <td>
-        <Input name="deliveryDate" readOnly value={formatTime(config.timeFormat, deadline)} />
+        <p>{formatTime(config.timeFormat, deliveryTime)}</p>
       </td>
       <td>计划交付日期</td>
     </tr>
@@ -46,4 +51,4 @@ const IDate = () => {
   </table>
 }
 
-export default IDate
+export default makeFormItem(IDate, true)

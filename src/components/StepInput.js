@@ -2,7 +2,7 @@
  * StepInput.js of pipleline
  * Created by beica on 2019/11/22
  */
-import React, { useReducer, useEffect } from 'react'
+import React from 'react'
 import * as R from 'ramda'
 import reducerGen from 'reducers/logicReducer.gen'
 
@@ -18,25 +18,25 @@ const StepInput = (
   }
 ) => {
   const stepReducer = reducerGen(R.add)
-  const [value, dispatch] = useReducer(stepReducer, _value)
+  const [value, dispatch] = React.useReducer(stepReducer, _value)
   
-  const inc = () => {
+  const update = addend => {
     dispatch({
       type: 'ADD',
-      addend: value + step > max ? max - value : step
+      addend
     })
+    change(value + addend)
+  }
+  
+  const inc = () => {
+    const next = value + step > max ? (max - value) : step
+    update(next)
   }
   
   const dec = () => {
-    dispatch({
-      type: 'ADD',
-      addend: -(value - step < min ? value - min : step)
-    })
+    const next = -(value - step < min ? value - min : step)
+    update(next)
   }
-  
-  useEffect(() => {
-    change(value)
-  }, [value, min, change])
   
   return (
     <span className="step-input">

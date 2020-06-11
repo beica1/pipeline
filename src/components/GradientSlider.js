@@ -2,7 +2,7 @@
  * GradientSlider.js of pipleline
  * Created by beica on 2019/11/25
  */
-import React, { useRef, useState, useEffect, useCallback } from 'react'
+import React, { useRef, useState, useCallback } from 'react'
 import * as R from 'ramda'
 import { mix as _mix } from 'utils/color'
 import cx from 'utils/classnames'
@@ -36,10 +36,12 @@ const GradientSlider = ({ stops, values, value = 0, onChange = R.identity }) => 
   const moveTo = useCallback(percent => {
     const pos = Math.round(percent / quoteOfPerStep) * quoteOfPerStep
     const color = mixColors(pos / getQuoteOfPerStep(stops))
-    change(pos / quoteOfPerStep)
     changeColor(`rgba(${String(color)})`)
+    const current = pos / quoteOfPerStep
+    change(current)
+    onChange(Math.abs(current))
     move(pos)
-  }, [stops, mixColors, quoteOfPerStep])
+  }, [quoteOfPerStep, mixColors, stops, onChange])
   
   const click = e => {
     const bounding = root.current.getBoundingClientRect()
@@ -47,21 +49,15 @@ const GradientSlider = ({ stops, values, value = 0, onChange = R.identity }) => 
     moveTo(percent)
   }
   
-  useEffect(() => {
-    onChange(Math.abs(current))
-  }, [current, onChange])
-  
-  return (
-    <div ref={root} className="gradient-slider" style={gradientBg} onClick={click}>
-      {values.map((item, index) => {
-        const style = {
-          left: quoteOfPerStep * index + '%'
-        }
-        return <span key={index} className={cx(['stop', {active: index === current}])} style={style}>{item}</span>
-      })}
-      <div ref={cursor} className="cursor" style={{background: color, left: left + '%'}} />
-    </div>
-  )
+  return <div ref={root} className="gradient-slider" style={gradientBg} onClick={click}>
+    {values.map((item, index) => {
+      const style = {
+        left: quoteOfPerStep * index + '%'
+      }
+      return <span key={index} className={cx(['stop', { active: index === current }])} style={style}>{item}</span>
+    })}
+    <div ref={cursor} className="cursor" style={{ background: color, left: left + '%' }}/>
+  </div>
 }
 
 export default GradientSlider

@@ -73,3 +73,6 @@ export const arrayToObj = R.o(R.fromPairs, R.into([], R.addIndex(R.map)(R.flip(R
  * @return {Function}
  */
 export const rangeLimit = R.useWith(R.both, [R.flip(R.gte), R.flip(R.lte)])
+
+export const isStringValue = R.both(R.is(String), R.complement(R.isEmpty))
+

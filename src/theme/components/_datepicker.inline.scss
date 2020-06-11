@@ -2,11 +2,33 @@
  * _datepicker.inline.js of pipleline
  * Created by beica on 2019/11/15
  */
-.datepicker__day {
-  height: 30px;
-  line-height: 30px;
+.datepicker.inline {
+  position: relative;
+  width: 160px;
 
+  &:hover {
+    .cur {
+      border-radius: 0;
+    }
+
+    .pre,
+    .next {
+      display: block;
+    }
+
+    .datepicker__day.cur {
+      border-color: rgba($grey, 0.2);
+    }
+  }
+}
+
+.datepicker__day {
   &.cur {
+    border-radius: 4px;
+    background: rgba($grey, 0.2);
+    height: 30px;
+    padding-left: 10px;
+    line-height: 30px;
     border-width: 1px 0;
     border-color: transparent;
     border-style: solid;
@@ -14,13 +36,18 @@
 
   &.pre,
   &.next {
+    opacity: 0.5;
+    display: none;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 15px;
     font-size: 16px;
-    margin-left: 10px;
+    background: rgba($grey, 0.1);
     cursor: pointer;
-  }
-
-  &.pre {
-    position: relative;
+    overflow: hidden;
 
     &::before {
       position: absolute;
@@ -29,34 +56,26 @@
       display: inline-block;
       height: 100%;
       width: 100%;
-      background: linear-gradient(to bottom, white 30%, transparent);
       content: '';
+    }
+  }
+
+  &.pre {
+    border-radius: 4px 4px 0 0;
+    bottom: 100%;
+
+    &::before {
+      background: linear-gradient(to top, rgba($grey, 0.2) 20%, transparent);
       z-index: 1;
     }
   }
 
   &.next {
-    position: relative;
+    top: 100%;
+    border-radius: 0 0 4px 4px;
 
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: inline-block;
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(to top, white, transparent);
-      content: '';
-    }
-  }
-}
-
-.datepicker.inline {
-  width: 160px;
-
-  :hover {
-    .datepicker__day.cur {
-      border-color: $grey;
+    &::before {
+      background: linear-gradient(to bottom, rgba($grey, 0.2) 20%, transparent);
     }
   }
 }

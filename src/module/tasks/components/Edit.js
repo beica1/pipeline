@@ -5,7 +5,6 @@
 import * as R from 'ramda'
 import React from 'react'
 import { Formik, Form } from 'formik'
-import Selector from 'components/form/TagSelect'
 import { coWorkers, requirements } from 'config'
 import FormField from 'components/form/FormField'
 import cx from 'utils/classnames'
@@ -25,18 +24,15 @@ const coWorkerFormat = R.applySpec({
   label: R.prop('groupName')
 })
 
-export const Item = ({ label, className, children }) => {
-  return <div className={cx('act__item', className)}>
-    {label && <label>{label}</label>}
-    <div className="form-item">{children}</div>
-  </div>
+const submit = (values) => {
+  console.log('submit', values)
 }
 
 const Edit = ({ collapse, readonly = false }) => {
   return <Formik
     validationSchema={schema}
     initialValues={schema.default()}
-    onSubmit={(values) => {console.log('submit', values)}}
+    onSubmit={submit}
   >
     <Form>
       <div className="task__form flex fill">
@@ -50,11 +46,15 @@ const Edit = ({ collapse, readonly = false }) => {
             format={requirementFormat}
           />
           <Files name="files" className="act__files" label="文件"/>
-          <Item className="act__actors" label="参与人员">
-            <Selector name="actors" tags={coWorkers} format={coWorkerFormat}/>
-          </Item>
+          <FormField.Tags
+            name="actors"
+            className="act_actors"
+            label="参与者"
+            tags={coWorkers}
+            format={coWorkerFormat}
+          />
           <IDate name="deliveryTime" className="act__time" label="时间" />
-          <Priority name="priority" className="act__priority over-hidden" label="时间" />
+          <Priority name="priority" className="act__priority over-hidden" label="优先级" />
         </div>
         <div className="act__preview scroll-y">
           <label>预览</label>

@@ -26,7 +26,7 @@ const IDate = ({ value: deliveryTime, onChange: setDeliveryTime }) => {
     setValue(v)
   }
   
-  return <table>
+  return <table style={{marginTop: '20px'}}>
     <tbody>
     <tr>
       <td>

@@ -11,7 +11,7 @@ const partialGuid = R.pipe(Math.random, R.add(1), R.multiply(0x10000), Math.floo
 
 const assembleGUIDPartials = R.o(
   R.join(''),
-  R.juxt([R.call, R.o(R.join('-'), R.times(R.__, 5)), R.o(R.join(''), R.times(R.__, 2))])
+  R.juxt([R.call, R.o(R.join(''), R.times(R.__, 5)), R.o(R.join(''), R.times(R.__, 2))])
 )
 
 export const guid = R.thunkify(assembleGUIDPartials)(partialGuid)

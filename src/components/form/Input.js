@@ -4,6 +4,6 @@
  */
 import React from 'react'
 
-const Input = ({ onChange, ...props }) => <input type="text" {...props} onChange={e => onChange(e.target.value)} />
+const Input = ({ onChange, value, ...props }) => <input type="text" {...props} onChange={e => onChange(e.target.value)} />
 
 export default Input
